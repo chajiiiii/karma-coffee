@@ -16,7 +16,6 @@ from .models import Product, Order, OrderItem, Review, User
 
 from .forms import UserForm
 from .forms import ReviewForm
-from .forms import RegisterUserForm
 
 
 stripe.api_key = settings.STRIPE_API_KEY_HIDDEN
@@ -112,14 +111,14 @@ def delete_review(request, product_id):
 def signup(request):
     error_message = ''
     if request.method == 'POST':
-        form = RegisterUserForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
             return redirect('index')
         else:
             error_message = 'Invalid sign up - try again'
-    form = RegisterUserForm()
+    form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 

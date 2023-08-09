@@ -6,8 +6,8 @@ div.index-header {
   border: none;
 }
 
-div.index-header > h1,
-div.index-header > p {
+div.index-header>h1,
+div.index-header>p {
   text-align: center;
   margin: 0;
   padding: 0;
@@ -31,7 +31,7 @@ a {
   text-decoration: none;
 }
 
-.index-nav-category-detail > a:hover {
+.index-nav-category-detail>a:hover {
   text-decoration: underline black;
 }
 
@@ -44,14 +44,14 @@ div.index-product {
   padding: 1.5%;
 }
 
-div.index-product > a {
+div.index-product>a {
   border: none;
   border-radius: 0;
   background-color: #f9f6f0;
   text-align: center;
 }
 
-div.index-product > a:hover {
+div.index-product>a:hover {
   background-color: rgba(196, 168, 133, 0.304);
 }
 
@@ -59,11 +59,11 @@ div.index-product > a:hover {
   display: flex;
 }
 
-.card-body > h5 {
+.card-body>h5 {
   margin-bottom: 1rem;
 }
 
-.card-body > p {
+.card-body>p {
   margin: 0.5rem;
 }
 
@@ -100,4 +100,5 @@ div.review-delete-button {
 } */
 
 .navbar-hover-shadow:hover {
-  box-shadow: 0 25px 8px black }
+  box-shadow: 0 25px 8px black
+}
