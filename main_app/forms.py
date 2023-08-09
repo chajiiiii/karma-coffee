@@ -10,6 +10,11 @@ class ReviewForm(ModelForm):
         model = Review
         fields = ['rating', 'content']
 
+        widgets = {
+            'rating': forms.Select(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
+        }
+
 
 class UserForm(ModelForm):
     class Meta:

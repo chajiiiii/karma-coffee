@@ -1,103 +1,221 @@
-<!-- JIHYEON -->
+{% extends 'base.html' %} {% block content %}
 
-{% extends 'base.html' %} 
-{% block content %}
+    <div class="container-fluid justify-content-center" style="padding: 0;">
+        <div class="row" style="margin: 0; padding: 3rem 0; width: 100%; background-color: #f9f6f0;">
+            <div
+                class="col-md-6 d-flex flex-column justify-content-center text-center text-md-center" style="margin: 0 auto"
+            >
+                <div
+                class="h-100 w-100 d-flex flex-column justify-content-end"
+                >
+                    <img src="{{ product.image.url }}" alt="Product Image" />
+                </div>
+            </div>
 
-<main>
-  <div
-    class="position-relative overflow-hidden text-center"
-    style="height: 150rem"
-  >
+        <div
+            class="product-detail-description col-md-6 d-flex flex-column justify-content-center text-center text-md-start"
+            style=""
+        >
+            <div>
+                <h2 class="display-5 font-weight-normal">{{ product.name }}</h2>
+                <p class="lead font-weight-normal">${{ product.price }}</p>
+                <p class="lead font-weight-normal">{{ product.flavour }}</p>
+                <p class="lead font-weight-normal" style="margin: 1rem auto;">{{ product.description }}</p>
+                <form action="{% url 'add_to_cart' product.id %}" method="POST" style="margin: 2rem auto">
+                  {% csrf_token %}
+                  <div style="display: flex; flex-direction: column; align-items: center; margin: 10px 0;">
+                      <select class="form-select" aria-label="Default select example" style="height: 2.5rem; width: 100%;">
+                          <option value="8" selected>250g / ${{ product.price }}</option>
+                      </select>
 
-  <div class="d-md-flex flex-md-equal w-100"
-  style="height: 30%; background-color: #F9F6F0;">
-    <div
-      class="overflow-hidden"
-      style="width: 70%; text-align: center; display: flex; align-items: center; justify-content: center;"
-    ><img src="{{ product.image.url }}" alt="Product">
-    </div>
-
-    <div
-    class="overflow-hidden" style="display: flex; align-items: center; justify-content: center;"
-  >
-    <div class="my-3 p-3" style="text-align: left;">
-      <h2 class="display-5" style="font-weight: bold;">{{ product.name }}</h2>
-      <p class="lead">${{ product.price }}</p>
-      <p class="lead">{{ product.flavour }}</p>
-      <p class="lead">{{ product.description }}</p>
-
-      <form action="{% url 'add_to_cart' product.id %}" method="POST">
-        {% csrf_token %}
-        <select class="form-select" aria-label="Default select example">
-            <option value="8" selected>250g / ${{ product.price }}</option>
-        </select>
-        <div class="form-outline">
-            <input type="number" id="typeNumber" name="quantity" class="form-control" value="1" min="1"/>
+                      <div style="display: flex; width: 100%; margin: 0.5rem 0;">
+                          <div class="form-outline" style="flex: 1; margin-right: 5px;">
+                              <input
+                                  type="number"
+                                  id="typeNumber"
+                                  name="quantity"
+                                  class="form-control"
+                                  value="1"
+                                  min="1"
+                                  style="height: 2.5rem; width: 100%;"
+                              />
+                          </div>
+                          <button type="submit" class="btn btn-dark" style="flex: 1; margin-left: 5px; height: 2.5rem; display: flex; justify-content: center; align-items: center;">Add to Cart</button>
+                          <!-- ADD TO CART MODAL START  -->
+                          {% if messages %}
+                          {% for message in messages %}
+                            {% if message.tags == "success" %}
+                              <script>
+                                $(document).ready(function() {
+                                  $('#productAddedModal').modal('show');
+                                });
+                              </script>
+                              <div class="modal fade" id="productAddedModal" tabindex="-1" aria-labelledby="productAddedModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header text-center">
+                                      <h1 class="modal-title fs-5 w-100" id="productAddedModalLabel">Product Added!</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                      {{ product.name }} has been added to the cart!
+                                    </div>
+                                    <div class="modal-footer d-flex flex-column align-items-stretch">
+                                      <a href="{% url 'cart' %}" class="btn btn-dark" style="width: 100%;">Go to Cart</a>
+                                      <a href="{% url 'index' %}" class="btn btn-dark" style="width: 100%;">Continue Shopping</a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            {% endif %}
+                          {% endfor %}
+                        {% endif %}
+<!-- ADD TO CART MODAL END -->
+                      </div>
+                  </div>
+              </form>
+              
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Add to Cart</button>
-    </form>
-    
-
+        </div>
     </div>
-  </div>
-</div>
 
- <div class="d-md-flex flex-md-equal w-100" style="height: 25%; background-color: #fffcf7;">
-  <div
-    class="px-md-5 text-center overflow-hidden"
-    style="width: 50%;"
-  >
-    <div class="my-3 p-3">
-      <h2>Flavour Notes</h2>
-      <p class="lead">{{ product.flavour }}</p>
-      <h2>Flavour</h2>
-      <p>{{ product.roast }}</p>
-      <h2>Roast</h2>
-      <p>{{ product.roast }}</p>
+
+    <div class="row" style="margin: 0; padding: 5rem 0; width: 100%;">
+        <div
+        class="col-md-6 d-flex flex-column justify-content-center text-center"
+        style="padding: 1rem">
+            <div
+                class="flavour-notes h-100 w-100 d-flex flex-column justify-content-center align-items-center" style="margin: auto 0">
+                <div>
+                    <div style="margin: 1rem">
+                        <h2 class="lead" style="font-size: 1.2rem; font-weight: 500;">Flavour Notes</h2>
+                        <p class="lead" style="font-size: 1.4rem">{{ product.flavour }}</p>
+
+                        <h2 class="lead" style="font-size: 1.2rem; font-weight: 500; padding: 2rem 0 0.5rem 0;">Flavour</h2>
+                        <div class="d-flex align-items-center justify-content-center" style="position: relative;">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <span class="lead" style="position: absolute; left: 5%; font-size: 1.2rem;">Floral<br>/ Fruity</span>
+                                <div class="align-items-center" style="max-width: 60%">
+                                    {% if product.roast == 'D' %}
+                                        <img src="../../static/media/bars/1.png"  class="" style="max-width: 100%; height: auto;">
+                                    {% else %}
+                                        <img src="../../static/media/bars/2.png"  class="" style="max-width: 100%; height: auto;">
+                                    {% endif %}
+                                </div>
+                                <span class="lead ms-2" style="position: absolute; right: 3%; font-size: 1.2rem;">Dark<br>Chocolate</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin: 1rem; padding-top: 2rem;">
+                        <h2 class="lead" style="font-size: 1.2rem; font-weight: 500;">Roast</h2>
+                        <div class="d-flex align-items-center justify-content-center" style="position: relative;">
+                            <span class="lead" style="position: absolute; left: 5%; font-size: 1.2rem;">Light</span>
+                            <div class="align-items-center" style="max-width: 60%">
+                                {% if product.roast == 'D' %}
+                                    <img src="../../static/media/bars/{{ product.roast }}.png" class="" style="max-width: 100%; height: auto;">
+                                {% elif product.roast == 'M' %}
+                                    <img src="../../static/media/bars/{{ product.roast }}.png" class="" style="max-width: 100%; height: auto;">
+                                {% else %}
+                                    <img src="../../static/media/bars/{{ product.roast }}.png" class="" style="max-width: 100%; height: auto;">
+                                {% endif %}
+                            </div>
+                            <span class="lead" style="position: absolute; right: 7%; font-size: 1.2rem;">Dark</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="col-md-6 d-flex flex-column justify-content-center align-items-center text-center text-md-start"
+        >
+            <div class="d-flex justify-content-center align-items-center" style="height: 95%; width: 95%;">
+                {% if product.origin == 'Colombia' %}
+                    {% if product.roast == 'D' %}
+                        <img src="../../static/media/roasting.jpeg" alt="Product Image" style="max-width: 100%; max-height: 100%;" />
+                    {% else %}
+                        <img src="../../static/media/coffee-cherries2.jpeg" alt="Product Image" style="max-width: 100%; max-height: 100%;" />
+                    {% endif %}
+                {% elif product.origin == 'Ethiopia' %}
+                    {% if product.roast == 'L' %}
+                        <img src="../../static/media/coffee-cherries3.webp" alt="Product Image" style="max-width: 100%; max-height: 100%;" />
+                    {% else %}
+                        <img src="../../static/media/wholebean.jpeg" alt="Product Image" style="max-width: 100%; max-height: 100%;" />
+                    {% endif %}
+                {% elif product.origin == 'Brazil' %}
+                    {% if product.roast == 'D' %}
+                        <img src="../../static/media/wholebean.jpeg" alt="Product Image" style="max-width: 100%; max-height: 100%;" />
+                    {% else %}
+                        <img src="../../static/media/coffee-cherries.jpeg" alt="Product Image" style="max-width: 100%; max-height: 100%;" />
+                    {% endif %}
+                {% elif product.origin == 'India' %}
+                    {% if product.roast == 'L' %}
+                        <img src="../../static/coffee-cherries4.jpeg" alt="Product Image" style="max-width: 100%; max-height: 100%;" />
+                    {% else %}
+                        <img src="../../static/media/roasting.jpeg" alt="Product Image" style="max-width: 100%; max-height: 100%;" />
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div
-    class="text-center overflow-hidden" style="width: 50%; display: flex; align-items: center; justify-content: center;"
-  >
-    <div>
-      <img src="../../static/media/fields.webp" style="height: 30rem;">
+    <!-- REVIEW -->
+    <div style="margin: 0; padding: 5rem 0; width: 100%; background-color: #f9f6f0;">
+    <h1 class="display-6 font-weight-normal" style="text-align: center">Reviews</h1>
+    <div class="container col-md-8 d-flex flex-column justify-content-center" style="padding: 0.5rem 0;">
+        {% if not request.user.is_authenticated %}
+            <p class="lead font-weight-normal">Log in to leave a review</p>
+        {% elif review_form %}
+            <div class="form-group" style="width: 100%;">
+                <form action="{% url 'add_review' product.id %}" method="POST" class="review-form">
+                    {% csrf_token %}
+                    {{ review_form.as_p }}
+                    <button type="submit" class="btn btn-dark" style="width: 100%;">Add Review</button>
+                </form>
+            </div>
+        {% else %}
+            <p class="lead font-weight-normal text-center">You can write a review for this product after it has been delivered.</p>
+        {% endif %}
     </div>
-  </div>
-</div>
-
-<div>
-    <h1>Reviews</h1>
-
-    {% if not request.user.is_authenticated %}
-        <p>Log in to leave a review</p>
-    {% elif review_form %}
-            <form action="{% url 'add_review' product.id %}" method="POST">
-                {% csrf_token %}
-                {{ review_form.as_p }}
-                <button type="submit">Add Review</button>
-            </form>
-    {% else %}
-        <p>You can only write a review for this product after it has been delivered.</p>
-    {% endif %}
+    <br>
 
     {% for review in product.reviews.all %}
-        <div style="border: 1px solid grey">
-            <p>Purchase Date: {{ review.purchase_date }}</p>
-            <p>Review Date: {{ review.review_date }}</p>
-            <p>Rating: {{ review.rating }}</p>
-            <p>Content: {{ review.content }}</p>
-            {% if request.user == review.user %}
-                <form action="{% url 'delete_review' product.id %}" method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="review_id" value="{{ review.id }}">
-                    <input type="submit" value="DELETE" onclick="return confirm('Delete this review?')" />
-                </form>
-            {% endif %}
+    <div class="container card col-md-8 d-flex flex-column justify-content-center" style="padding: 0; position: relative;">
+        <div class="card-body">
+            <div style="display: flex">
+                <div>
+                    <img src="../../static/media/Coffee.png" style="max-width: 25px; margin: auto; ">
+                </div>
+                <div style="width: 80%; margin: 5px auto;">
+                    <p class="card-text" style="font-weight: bold;">{{ review.user.username }}</p>
+                    <p class="card-text" style="font-weight: bold;">Rating: {{ review.rating }} / 5</p>
+                    <p class="card-text">{{ review.content }}</p>
+                </div>
+                <p class="card-text" style="float: right; margin: 0 auto;"><small class="text-body-secondary">{{ review.review_date }}</small></p>
+            </div>
         </div>
+
+        {% if request.user == review.user %}
+        <div class="review-delete-button">
+          <form action="{% url 'delete_review' product.id %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="review_id" value="{{ review.id }}">
+              <button type="submit" class="delete-button" style="background-color: transparent; border: none;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash3" viewBox="0 0 16 16">
+                      <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                  </svg>
+              </button>
+          </form>
+      </div>
+      
+        {% endif %}
+    </div>
     {% endfor %}
-</div>
-</main>
+
+  </div>
+  
 
 {% endblock %}
 

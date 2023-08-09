@@ -66,3 +66,27 @@ div.index-product > a:hover {
 .card-body > p {
   margin: 0.5rem;
 }
+
+/* Product Detail Page */
+
+div.product-detail-description {
+  width: 35%;
+  margin: auto 2.5rem;
+}
+
+div.review-delete-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 15px;
+}
+
+@media (max-width: 768px) {
+  div.product-detail-description {
+    width: 85%;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
