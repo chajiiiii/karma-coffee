@@ -1,23 +1,46 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="container" style="margin-top: 10vmin;">
+<div class="d-flex align-items-center justify-content-center" style="min-height: 50vh;">
+    <div class="col-lg-3 col-md-5 col-sm-8 text-center">
 
-    <h1>Sign Up</h1>
+        <h1 class="h1 mb-3 fw-normal">Create Account</h1>
+        <p class="mb-3 fw-normal">Sign up to become part of the Karma family</p>
 
-    <h5>Hello, please sign up to be part of the karma family</h5>
+        <p class="red-text">{{ error_message }}</p>
 
-    <p class="red-text">{{ error_message }}</p>
+        <form method="POST" action="{% url 'signup' %}" class="mb-3">
+            {% csrf_token %}
+            <div class="mb-3">
+                <input type="text" name="username" class="form-control" placeholder="Username" required>
+            </div>
+            <div class="mb-3">
+                <input type="email" name="email" class="form-control" placeholder="Email" required>
+            </div>
+            <div class="mb-3">
+                <input type="password" name="password1" class="form-control" placeholder="Password" required>
+            </div>
+            <div class="mb-3">
+                <input type="password" name="password2" class="form-control" placeholder="Confirm Password" required>
+            </div>
+            <button class="btn btn-dark btn-block" style="width: 100%;" type="submit">Sign Up</button>
+        </form>
 
-    <form method="POST" action="{% url 'signup' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn">Sign Up</button>
-    </form>
+        <p class="text-center">Already have an account? <a href="{% url 'login' %}">Log In</a></p>
 
-    {% load socialaccount %}
-    <h3>Google Login</h3>
-    <a href="{% provider_login_url 'google'%}?next=/">Login with Google</a>
+        <p>Or, continue with</p>
+
+        {% load socialaccount %}
+
+
+        <a href="{% provider_login_url 'google'%}?next=/" class="btn btn-outline-secondary" style="width: 100%;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" fill="black" class="bi bi-google google"
+                viewBox="0 0 16 16" style="position: relative; top: -1px;">
+                <path
+                    d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
+            </svg>&nbsp;Google
+        </a>
+    </div>
 </div>
 
 {% endblock %}

@@ -72,3 +72,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+
+
+// ADDING SCRIPT FOR THE CARET SYMBOLS TO ANIMATE
+
+document.addEventListener('show.bs.collapse', function(event) {
+  let collapseContent = event.target;
+  let button = collapseContent.previousElementSibling;
+  let icon = button.querySelector('i');
+  icon.classList.replace('bi-caret-right-fill', 'bi-caret-down-fill');
+});
+
+document.addEventListener('hide.bs.collapse', function(event) {
+  let collapseContent = event.target;
+  let button = collapseContent.previousElementSibling;
+  let icon = button.querySelector('i');
+  icon.classList.replace('bi-caret-down-fill', 'bi-caret-right-fill');
+});

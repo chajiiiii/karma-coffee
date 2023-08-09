@@ -21,14 +21,12 @@
         </li>
         <li class="mb-1">
           <button
-            class="index-nav-category btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-            data-bs-toggle="collapse"
-            data-bs-target="#home-collapse"
-            aria-expanded="true"
-          >
-            ORIGIN
-          </button>
-          <div class="index-nav-collapse collapse show" id="home-collapse">
+          class="index-nav-category btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+          data-bs-toggle="collapse"
+          data-bs-target="#home-collapse"
+          aria-expanded="false"
+          ><i class="bi bi-caret-right-fill"></i>&nbsp; ORIGIN</button>
+          <div class="index-nav-collapse collapse" id="home-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
               <li class="index-nav-category-detail">
                 <a
@@ -71,9 +69,7 @@
             data-bs-toggle="collapse"
             data-bs-target="#dashboard-collapse"
             aria-expanded="false"
-          >
-            ROAST
-          </button>
+          ><i class="bi bi-caret-right-fill"></i>&nbsp; ROAST</button>
           <div class="index-nav-collapse collapse" id="dashboard-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
               <li class="index-nav-category-detail">
@@ -131,3 +127,4 @@
   </div>
 </main>
 {% endblock %}
+

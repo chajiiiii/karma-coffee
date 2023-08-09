@@ -1,36 +1,59 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container col-12" style="margin-top: 10vmin;">
-  <div class="row">
-    <div class="col-md-6">
+
+<div class="container mt-5">
+  
+
+<div class="container col-12">
+  <h1>Account</h1>
+  <div class="row mt-5">
+    <div class="col-md-6 col-sm-12 mb-3">
       <h3>Your Orders</h3>
+      <br>
 
-      {% for order in orders %}
-          <div class="order">
-              <h3>Order #{{ order.id }}</h3>
-              <p>Date: {{ order.date }}</p>
-              <p>Status: {{ order.get_status_display }}</p>
-              <p>Total: ${{ order.get_total }}</p>
-
-              <h4>Order Items:</h4>
-              <ul>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Order #</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Total</th>
+            <th>Order Items</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for order in orders %}
+            <tr>
+              <td>{{ order.id }}</td>
+              <td>{{ order.date }}</td>
+              <td>{{ order.get_status_display }}</td>
+              <td>${{ order.get_total }}</td>
+              <td>
+                <ul>
                   {% for item in order.orderitem_set.all %}
                       <li>
                           {{ item.product.name }} ({{ item.quantity }}) - ${{ item.product.price }}
                       </li>
                   {% endfor %}
-              </ul>
-          </div>
-      {% endfor %}
+                </ul>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
-    <div class="col-md-6">
+
+    <div class="col-md-2 col-sm-0"></div>
+
+    <div class="col-md-4 col-sm-12">
       <h3>Your Details</h3>
+      <br>
       {% load crispy_forms_tags %}
       <form method="post">
           {% csrf_token %}
-          {{ user_form|crispy }}
-          <button type="submit" class="btn btn-primary">Save</button>
+          <strong>{{ user_form|crispy }}</strong>
+          <button type="submit" class="btn btn-dark mt-1">Update</button>
       </form>
     </div>
   </div>

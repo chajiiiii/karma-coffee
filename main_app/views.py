@@ -5,6 +5,7 @@ from django.views import View
 from django.conf import settings
 from django.http import JsonResponse
 from django.http import HttpResponse
+from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib import messages
@@ -15,7 +16,6 @@ from .models import Product, Order, OrderItem, Review, User
 
 from .forms import UserForm
 from .forms import ReviewForm
-from .forms import RegisterUserForm
 
 
 stripe.api_key = settings.STRIPE_API_KEY_HIDDEN
@@ -26,7 +26,10 @@ YOUR_DOMAIN = 'http://localhost:8000'
 
 
 def home(request):
-    return render(request, 'home.html')
+    products = Product.objects.all()
+    return render(request, 'home.html', {
+        'products': products
+    })
 
 
 def learn(request):
@@ -108,14 +111,14 @@ def delete_review(request, product_id):
 def signup(request):
     error_message = ''
     if request.method == 'POST':
-        form = RegisterUserForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
             return redirect('index')
         else:
             error_message = 'Invalid sign up - try again'
-    form = RegisterUserForm()
+    form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 
@@ -130,19 +133,16 @@ def cart(request):
         cart = Order.objects.filter(
             id=cart_id, status='C').last() if cart_id else None
 
-    return render(request, 'cart.html', {'cart': cart})
+    return render(request, 'cart.html', {'cart': cart}) #there MIGHT BE A PROBLEM HERE MEANING ONCE GUESTS CHECKOUT THEY CAN NO LONGER ADD TO CART
 
 
 def add_to_cart(request, product_id):
     product = Product.objects.get(id=product_id)
-    # Fetch the quantity from POST data
     quantity = int(request.POST.get('quantity', 1))
 
-    # If the user is authenticated, associate the cart with the user
     if request.user.is_authenticated:
         order, created = Order.objects.get_or_create(
             user=request.user, status='C')
-    # If not, check if there's a cart in the session
     else:
         order_id = request.session.get('cart_id')
         if order_id:
@@ -151,17 +151,16 @@ def add_to_cart(request, product_id):
             order = Order.objects.create(status='C')
             request.session['cart_id'] = order.id
 
-    # Check if the product already exists in the cart
-    order_item, item_created = OrderItem.objects.get_or_create(
-        product=product, order=order, quantity=quantity)
+    # Check if the product already exists in the cart based solely on the product and order
+    order_item, item_created = OrderItem.objects.get_or_create(product=product, order=order)
 
-    # If the product already exists in the cart, increase its quantity
+    # Update the quantity of the product in the cart
     if item_created:
         order_item.quantity = quantity
     else:
         order_item.quantity += quantity
 
-        order_item.save()
+    order_item.save()
 
     messages.success(request, "Item added to cart successfully!")
     return redirect('detail', product_id=product_id)
@@ -228,9 +227,20 @@ def checkout(request):
     return render(request, 'checkout.html', {'cart': cart, 'pub_key': pub_key})
 
 
-class CreateCheckoutSessionView(LoginRequiredMixin, View):
+
+class CreateCheckoutSessionView(View): 
     def post(self, request, *args, **kwargs):
-        cart = Order.objects.filter(user=request.user, status='C').last()
+        # For logged-in users, fetch their cart
+        if request.user.is_authenticated:
+            cart = Order.objects.filter(user=request.user, status='C').last()
+        # For guests, fetch the cart from the session
+        else:
+            cart_id = request.session.get('cart_id')
+            cart = Order.objects.filter(id=cart_id, status='C').last()
+
+        # If no cart is found (neither for logged-in users nor for guests)
+        if not cart:
+            return HttpResponseBadRequest("No active cart found")
 
         line_items = []
         for item in cart.orderitem_set.all():
@@ -254,19 +264,19 @@ class CreateCheckoutSessionView(LoginRequiredMixin, View):
             success_url=YOUR_DOMAIN +
             '/success/?session_id={CHECKOUT_SESSION_ID}',
             cancel_url=YOUR_DOMAIN + '/cancel/',
+            shipping_address_collection={'allowed_countries': ['US', 'CA'], },
         )
 
-        # Replace placeholder with actual id
         checkout_session.success_url = checkout_session.success_url.replace(
             '{CHECKOUT_SESSION_ID}', checkout_session.id)
 
-        # Store the session id in the order
         cart.session_id = checkout_session.id
         cart.save()
 
         return JsonResponse({
             'id': checkout_session.id
         })
+
 
 
 def checkout_success(request):
