@@ -2,7 +2,7 @@
 div.index-header {
   text-align: center;
   margin: 0;
-  padding: 4rem 0;
+  padding: 6rem 0;
   border: none;
 }
 
@@ -10,7 +10,7 @@ div.index-header > h1,
 div.index-header > p {
   text-align: center;
   margin: 0;
-  padding: 0;
+  padding: 0.5rem 0;
 }
 
 div.index-nav-bar {
