@@ -187,7 +187,7 @@ def update_cart(request, product_id):
         if order_item:
             order_item.quantity = quantity
             order_item.save()
-            messages.success(request, "Item quantity updated successfully!")
+            # messages.success(request, "Item quantity updated successfully!")
         else:
             messages.warning(request, "Item not found in the cart!")
 
@@ -211,7 +211,7 @@ def remove_from_cart(request, product_id):
         product_id=product_id, order=cart).first()
     if order_item:
         order_item.delete()
-        messages.success(request, "Item removed from cart successfully!")
+        # messages.success(request, "Item removed from cart successfully!")
     else:
         messages.warning(request, "Item not found in the cart!")
 
@@ -310,7 +310,7 @@ def account_view(request):
         user_form = UserForm(request.POST, instance=request.user)
         if user_form.is_valid():
             user_form.save()
-            messages.success(request, 'Your profile was successfully updated!')
+            # messages.success(request, 'Your profile was successfully updated!')
             return redirect('account')
     else:
         user_form = UserForm(instance=request.user)

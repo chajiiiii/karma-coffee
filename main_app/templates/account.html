@@ -11,38 +11,47 @@
     <div class="col-md-6 col-sm-12 mb-3">
       <h3>Your Orders</h3>
       <br>
-
+      <div class="table-responsive">
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Order #</th>
-            <th>Date</th>
-            <th>Status</th>
+            <th class="d-sm-table-cell d-md-none">Details</th>
+            <th class="d-none d-md-table-cell">Order</th>
+            <th class="d-none d-md-table-cell">Date</th>
             <th>Total</th>
             <th>Order Items</th>
           </tr>
         </thead>
         <tbody>
           {% for order in orders %}
+            {% if order.status != 'C' %}
             <tr>
-              <td>{{ order.id }}</td>
-              <td>{{ order.date }}</td>
-              <td>{{ order.get_status_display }}</td>
+              <td class="d-sm-table-cell d-md-none">
+                #{{ order.id }} <br>
+                ({{ order.get_status_display }}) <br>
+                {{ order.date }}
+              </td>
+              <td class="d-none d-md-table-cell">#{{ order.id }} <br>
+                ({{ order.get_status_display }})
+              </td>
+              <td class="d-none d-md-table-cell">{{ order.date }}</td>
               <td>${{ order.get_total }}</td>
               <td>
-                <ul>
+                
                   {% for item in order.orderitem_set.all %}
-                      <li>
-                          {{ item.product.name }} ({{ item.quantity }}) - ${{ item.product.price }}
-                      </li>
+                      
+                  • {{ item.product.name }} ({{ item.quantity }}) - ${{ item.product.price }} <br>
+                     
                   {% endfor %}
-                </ul>
+                
               </td>
             </tr>
+            {% endif %}
           {% endfor %}
         </tbody>
       </table>
     </div>
+  </div>
 
     <div class="col-md-2 col-sm-0"></div>
 

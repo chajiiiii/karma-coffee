@@ -89,3 +89,10 @@ document.addEventListener('hide.bs.collapse', function(event) {
   let icon = button.querySelector('i');
   icon.classList.replace('bi-caret-down-fill', 'bi-caret-right-fill');
 });
+
+// Cart Update Loader 
+document.querySelectorAll('.form-control').forEach(function(input) {
+  input.addEventListener('change', function() {
+      this.closest('form').submit();
+  });
+});

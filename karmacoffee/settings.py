@@ -33,6 +33,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
+    'https://karmacoffee-0075707e53e0.herokuapp.com/oauth2callback'
 ]
 
 STRIPE_API_KEY_PUBLISHABLE = 'pk_test_51NcAplKTTNpybu1oBa9m6XeqC3TGQOCw0EYJQhJJHLCf3eC996sIC8pdtr7NSw3GBDYpPZdEEJIA4TW7FYZDvCD200HwjTkail'
