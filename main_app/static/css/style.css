@@ -2,7 +2,6 @@
 div.index-header {
   text-align: center;
   margin: 0;
-  padding: 6rem 0;
   border: none;
 }
 
@@ -49,6 +48,7 @@ div.index-product > a {
   border-radius: 0;
   background-color: #f9f6f0;
   text-align: center;
+  padding-bottom: 1rem;
 }
 
 div.index-product > a:hover {
@@ -81,6 +81,20 @@ div.review-delete-button {
   margin: 15px;
 }
 
+.navbar-hover-shadow:hover {
+  box-shadow: 0 25px 8px black;
+}
+
+@media (min-width: 769px) {
+  div.index-header {
+    padding: 6rem 0;
+  }
+
+  div.index-nav-bar {
+    width: 280px;
+  }
+}
+
 @media (max-width: 768px) {
   div.product-detail-description {
     width: 85%;
@@ -89,16 +103,79 @@ div.review-delete-button {
     justify-content: center;
     align-items: center;
   }
+
+  div.index-sticky-top {
+    position: sticky;
+    top: 0;
+  }
+
+  div.index-header {
+    display: none;
+  }
+
+  div.index-container {
+    flex-direction: column;
+  }
+
+  div.index-nav-bar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1000;
+  }
+
+  div.index-nav-bar > ul {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    height: 8rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  div.index-nav-bar > ul > li {
+    margin: 0;
+  }
+
+  div.index-nav-collapse {
+    padding: 0 1rem 0 2rem;
+  }
+
+  div.index-product-container {
+    margin: 0 auto;
+  }
+
+  div.index-product {
+    width: 50%;
+  }
 }
 
-/* .card-body > h5 {
-  margin-bottom: 1rem;
-}
+@media (max-width: 360px) {
+  button.index-nav-category {
+    font-size: 0.6rem;
+  }
 
-.card-body > p {
-  margin: 0.5rem;
-} */
+  div.index-nav-bar > ul {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    height: 6.2rem;
+    justify-content: center;
+    align-items: center;
+  }
 
-.navbar-hover-shadow:hover {
-  box-shadow: 0 25px 8px black;
+  li.index-nav-category-detail > a {
+    font-size: 0.6rem;
+  }
+
+  div.index-nav-collapse {
+    padding: 0 1rem 0 2rem;
+  }
 }
