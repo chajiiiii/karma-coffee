@@ -187,3 +187,9 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 SOCIALACCOUNT_LOGIN_ON_GET=True
+
+# Other settings above
+
+# Configure Django App for Heroku.
+import django_on_heroku
+django_on_heroku.settings(locals(), databases=False)
