@@ -31,6 +31,8 @@ Welcome to Karma Coffee, where your coffee cravings meet the convenience of onli
 
 Karma Coffee is a robust and user-friendly coffee product ecommerce app designed to bring the rich world of coffee directly to your fingertips. Whether you're an avid coffee connoisseur or just starting to explore the world of specialty blends, our mission is to offer high-quality coffee products from different parts of the world while ensuring ethical sourcing. Karma Coffee has you covered.
 
+This project was collaboratively developed by a team of three individuals and completed within a seven-day timeframe.
+
 **Built With**
 
 For this project we built a fullstack application using these tools:
