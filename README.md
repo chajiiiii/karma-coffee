@@ -70,13 +70,15 @@ For this project we built a fullstack application using these tools:
 
 - To start your coffee journey, click on the 'Coffee' option in the navigation bar.
 - For a more personalized experience, sign up using your Google account to unlock special offers and features.
+- Implemented by Ross
 
 **Coffee Product Page**
 
 - View All Coffee proudcts.
 - Click 'Origin' to filter down the products by origins(Colombia, Ethiopia, Brazil, India).
-- Click 'Origin' to filter down the products by roast level(Dark, Medium, Light).
+- Click 'Roast' to filter down the products by roast level(Dark, Medium, Light).
 - Click specific item to see more details.
+- Implemented by Jihyeon
 
 **Product Detail Page**
 
@@ -84,6 +86,7 @@ For this project we built a fullstack application using these tools:
 - Read the story behind the coffee blend and its origin and flavors.
 - Add quantity and click 'Add to Cart' button to buy the coffee.
 - Scroll down to explore customer reviews and ratings.
+- Implemented by Jihyeon
 
 **Cart Page**
 
@@ -91,20 +94,24 @@ For this project we built a fullstack application using these tools:
 - Check quantity and price of the products you have in cart.
 - Update the quantity and delete products if you need.
 - You can check the total price and click 'Go to Checkout' button to purchase.
+- Implemented by Ross
 
 **Payment Page**
 
 - Via Stripe, you can check your final order details and have your shipping/payment details set up.
+- Implemented by Ross
 
 **LogIn/Sign Up Page**
 
 - You can create an account for our website.
 - You can also sign up through OAuth with a popular platform, Google.
+- Implemented by Rahul
 
 **Account Page**
 
 - Check your order history.
 - Update your account details.
+- Implemented by Ross
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
