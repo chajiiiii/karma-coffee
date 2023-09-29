@@ -192,10 +192,14 @@ Mobile responsive design was especially difficult, going forward, we would imple
 
 🎉 Jihyeon Cha - [LinkedIn](https://www.linkedin.com/in/jihyeoncha/) - j.cha1708@gmail.com / Project Link: [https://github.com/chajiiiii/karma-coffee](https://github.com/chajiiiii/karma-coffee)
 
+<details>
+<summary>Team members</summary>
+
 ✨ Ross Simpson - [LinkedIn](https://www.linkedin.com/in/simpsonre/) - thisisrosssimpson@gmail.com / Project Link: [https://github.com/SimpsonRoss/karma-coffee](https://github.com/SimpsonRoss/karma-coffee)
 
 🎊 Rahul Raikhy - [LinkedIn](https://www.linkedin.com/in/rahul-raikhy-31ab62197//) - rlraikhy@gmail.com / Project Link: [https://github.com/rahulraikhy/karma-coffee](https://github.com/rahulraikhy/karma-coffee)
 
+</details>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGMENTS -->
