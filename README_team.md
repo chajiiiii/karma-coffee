@@ -33,6 +33,8 @@ Karma Coffee is a robust and user-friendly coffee product ecommerce app designed
 
 This project was collaboratively developed by a team of three individuals and completed within a seven-day timeframe.
 
+**Built With**
+
 For this project we built a fullstack application using these tools:
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
@@ -66,53 +68,52 @@ For this project we built a fullstack application using these tools:
 - Enter any 3 digit security code, for example:
   234
 
-## Features & Contributions
+**Home Page**
 
-**Coffee Product Page** (Implemented by **Jihyeon**)
+- To start your coffee journey, click on the 'Coffee' option in the navigation bar.
+- For a more personalized experience, sign up using your Google account to unlock special offers and features.
+- Implemented by Ross
+
+**Coffee Product Page**
 
 - View All Coffee proudcts.
 - Click 'Origin' to filter down the products by origins(Colombia, Ethiopia, Brazil, India).
 - Click 'Roast' to filter down the products by roast level(Dark, Medium, Light).
 - Click specific item to see more details.
+- Implemented by Jihyeon
 
-<br>
-
-**Product Detail Page** (Implemented by **Jihyeon**)
+**Product Detail Page**
 
 - See the product image.
 - Read the story behind the coffee blend and its origin and flavors.
 - Add quantity and click 'Add to Cart' button to buy the coffee.
 - Scroll down to explore customer reviews and ratings.
+- Implemented by Jihyeon
 
-<br>
-<details>
-<summary>Contributions of Other Team Members</summary>
-**Home Page** (Implemented by Ross)
-
-- To start your coffee journey, click on the 'Coffee' option in the navigation bar.
-- For a more personalized experience, sign up using your Google account to unlock special offers and features.
-
-**Cart Page**(Implemented by Ross)
+**Cart Page**
 
 - See which products you put in your cart.
 - Check quantity and price of the products you have in cart.
 - Update the quantity and delete products if you need.
 - You can check the total price and click 'Go to Checkout' button to purchase.
+- Implemented by Ross
 
-**Payment Page** (Implemented by Ross)
+**Payment Page**
 
 - Via Stripe, you can check your final order details and have your shipping/payment details set up.
+- Implemented by Ross
 
-**LogIn/Sign Up Page** (Implemented by Rahul)
+**LogIn/Sign Up Page**
 
 - You can create an account for our website.
 - You can also sign up through OAuth with a popular platform, Google.
+- Implemented by Rahul
 
-**Account Page** (Implemented by Ross)
+**Account Page**
 
 - Check your order history.
 - Update your account details.
-</details>
+- Implemented by Ross
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -131,6 +132,10 @@ For this project we built a fullstack application using these tools:
 **Inspiration**
 
 One of the primary reasons our team decided on this topic is our shared passion for coffee. As coffee enthusiasts ourselves, we wanted to channel this passion into a project that would not only be technically challenging but also personally fulfilling.
+
+**Aim**
+
+To build a fullstack web application using Python, Django, and postgreSQL.
 
 **Landing Page**
 
@@ -151,6 +156,33 @@ Users will land on a home page that showcases the essence of our coffee products
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Project Brief
+
+- Have at least 2 data entities in addition to the User Model - one entity that represents the main functional idea for your app and another with a One:Many or Many:Many relationship with that main entity.
+- Use OAuth authentication.
+- Implement basic authorization that restricts access to features that need a logged in user in order to work
+- Have full-CRUD data operations somewhere within the app's features.
+- Have a consistent and polished user interface.
+- Be deployed online via Heroku
+
+## MVP - Minimum Viable Product
+
+- [x] AAU, I want a way to login.
+- [x] AAU, I want to see the products and product details.
+- [x] AAU, I want to add items in the basket, and edit, delete the items in the basket.
+- [x] AAU, I want to purchase products.
+- [x] AAU, I want to be able to leave and delete reviews for the products I purchased.
+
+## NTH - Nice to have
+
+- [x] AAU, I want to be able to filter the products.
+- [x] AAU, I'd like to see payment/order confirmation.
+- [x] AAU, I'd like to see my order history.
+- [x] AAU, I'd like to read about the company.
+- [x] AAU, I'd like to be able to log in with Google.
+- [ ] AAU, I want to be able to search specific item.
+- [ ] AAU, I want to be able to subscribe.
+
 ## Actual Project Screenshots
 
 ![app screensot](https://github.com/SimpsonRoss/karma-coffee/assets/93015253/7bf577fa-3b69-4048-b7ef-4936ea5add04)
@@ -163,6 +195,26 @@ Mobile responsive design was especially difficult, going forward, we would imple
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## User Feedback
+
+- [x] Add a larger selection of products
+- [x] Allow users to see their order history
+- [x] Checkout and purchase as a guest
+- [x] Add other authorisation methods
+- [ ] Better mobile view
+
+## Next Steps
+
+- Add Google's Places API to demonstrate locations of coffee production sites
+- Standardise CSS styling across the site
+- Improve the mobile view
+
+## Wins
+
+- **Working as a team of multiple developers on a single project**. This was the first time we'd worked on a project using GitHub as a team. Something we're expected to do in the industry, we're really happy to have achieved a great team dynamic and be able to resolve issues quickly and efficiently!
+
+- **Creating an app people want to use.** I wanted to make something that highlighted the topics I'm learning, and satisfies the project brief, but also something that I'd use and others want to use. From user feedback it seems that I achieved this, and that feel's awesome.
+
 ## Mistakes / Bugs
 
 - **Bootstrap trappings** Whilst bootstrap made implementing styling quicker, it made custom styling especially difficult, particularly when it came to mobile responsive design.
@@ -171,28 +223,39 @@ Mobile responsive design was especially difficult, going forward, we would imple
 
 - **OAuth google** If a user is using multiple accounts with similar names, google OAuth can be blocked.
 
+- **No Edit Functionality on Reviews** At this current time, a user can only create and delete a review, they are unable to.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Key Learnings & Wins
+## Key Learnings
 
-- **GitHub Deployment Requires Constant Communication** \
-  While it was our first experience working as a team, we encountered and overcame various challenges during this project. These hurdles, though initially daunting, ultimately contributed to our growth and development. <br>
-  <br>
-  Our success depended on our hard works and close collaboration to align the deployment process with our project's objectives. This experience underscored the importance of teamwork and effective communication. <br>
-  <br>
-  This project served as a valuable learning experience, laying the foundation for future successes. It showcased our dedication, adaptability, and shared passion for creating a team project. <br>
-  <br>
+- **GitHub deployment requires constant communication** Working as part of team requires good communication at the best of times, but when creating an app and/or website, constant communication is vital. When pushing new code with additional functionality upstream, and especially when working on functionality that may depend on other developers supporting.
 
-- **Daily-Use E-commerce App Creation** \
-  We successfully developed a practical e-commerce app tailored for everyday use. Our focus was on simplifying and enhancing users' daily shopping experiences. This achievement demonstrates our commitment to creating innovative solutions that fit seamlessly into people's lives.
+- **Mobile responsiveness first**It became very difficult to go back and tailer our content to mobile views, as such, implementing this first next project would be beneficial.
+
+- **Trust each other**For our first group project, we were all hesitant at the start to delegate too much or too little work to each other, but as the project went on, we understood each other's skills, that everyone could and would contribute to the project.
+
+<!-- CONTRIBUTING -->
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 <!-- CONTACT -->
 
 ## Contact
 
-🎉 Jihyeon Cha - [LinkedIn](https://www.linkedin.com/in/jihyeoncha/) - j.cha1708@gmail.com / Project Link: [https://github.com/chajiiiii/karma-coffee](https://github.com/chajiiiii/karma-coffee)
-
 ✨ Ross Simpson - [LinkedIn](https://www.linkedin.com/in/simpsonre/) - thisisrosssimpson@gmail.com / Project Link: [https://github.com/SimpsonRoss/karma-coffee](https://github.com/SimpsonRoss/karma-coffee)
+
+🎉 Jihyeon Cha - [LinkedIn](https://www.linkedin.com/in/jihyeoncha/) - j.cha1708@gmail.com / Project Link: [https://github.com/chajiiiii/karma-coffee](https://github.com/chajiiiii/karma-coffee)
 
 🎊 Rahul Raikhy - [LinkedIn](https://www.linkedin.com/in/rahul-raikhy-31ab62197//) - rlraikhy@gmail.com / Project Link: [https://github.com/rahulraikhy/karma-coffee](https://github.com/rahulraikhy/karma-coffee)
 
